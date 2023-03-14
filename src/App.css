@@ -44,4 +44,18 @@
 .main-container {
 	display: flex;
 	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.fade-in {
+	animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 100;
+	}
 }
