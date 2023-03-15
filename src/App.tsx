@@ -19,9 +19,8 @@ function App() {
 	}
 
 	const handleCopy = (text: string) => {
-		console.log(text)
-		navigator.clipboard.writeText(copyText)
-		alert(`Copied ${copyText} to the Clipboard`)
+		navigator.clipboard.writeText(text)
+		alert(`Copied ${text} to the Clipboard`)
 	}
 
 	return (
@@ -31,7 +30,7 @@ function App() {
 				Keep everyone on time with localized timestamps for your next event!
 			</p>
 			<div className='main-container'>
-				<label htmlFor='datetime'>Date</label>
+				<label htmlFor='date'>Date</label>
 				<input
 					type='date'
 					name='date'
@@ -45,7 +44,6 @@ function App() {
 					value={time}
 					onChange={(e) => setTime(e.target.value)}
 				/>
-
 				{copyText ? <h2>{copyText}</h2> : <h2>Please input a time</h2>}
 				<button onClick={() => handleCopy(copyText)} disabled={!copyText}>
 					Copy Timestamp
