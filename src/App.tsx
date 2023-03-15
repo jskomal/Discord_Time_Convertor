@@ -26,9 +26,9 @@ function App() {
 
 	return (
 		<div className='App'>
-			<h1>Discord Timestamp Maker</h1>
+			<h1 className='fade-in'>Discord Timestamp Maker</h1>
 			<p className='fade-in'>
-				Easily create a timestamp that's auto formatted for Discord!
+				Keep everyone on time with localized timestamps for your next event!
 			</p>
 			<div className='main-container'>
 				<label htmlFor='datetime'>Date</label>
