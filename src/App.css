@@ -44,6 +44,7 @@
 .main-container {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	gap: 0.5rem;
 }
 
@@ -58,4 +59,10 @@
 	100% {
 		opacity: 100;
 	}
+}
+
+input {
+	min-width: 300px;
+	max-width: 500px;
+	text-align: center;
 }
