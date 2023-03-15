@@ -46,10 +46,10 @@ function App() {
 					onChange={(e) => setTime(e.target.value)}
 				/>
 
-				{copyText !== '' && <h2>{copyText}</h2>}
-				{copyText && (
-					<button onClick={() => handleCopy(copyText)}>Copy Timestamp</button>
-				)}
+				{copyText ? <h2>{copyText}</h2> : <h2>Please input a time</h2>}
+				<button onClick={() => handleCopy(copyText)} disabled={!copyText}>
+					Copy Timestamp
+				</button>
 			</div>
 		</div>
 	)
