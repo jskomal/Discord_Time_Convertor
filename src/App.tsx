@@ -35,7 +35,7 @@ function App() {
 					type='date'
 					name='date'
 					value={date}
-					onChange={(e) => setDate(dayjs(e.target.value).format('YYYY-MM-DD'))}
+					onChange={(e) => setDate(e.target.value)}
 				/>
 				<label htmlFor='time'>Time</label>
 				<input
