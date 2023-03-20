@@ -61,8 +61,10 @@
 	}
 }
 
-input {
+input,
+select {
 	min-width: 300px;
 	max-width: 500px;
 	text-align: center;
+	min-height: 2rem;
 }
