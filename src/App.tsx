@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import dayjs from 'dayjs'
 import './App.css'
 
@@ -7,6 +7,7 @@ function App() {
 	const [time, setTime] = useState('')
 	const [copyText, setCopyText] = useState('')
 	const [formattingText, setFormattingText] = useState('f')
+	const isFirstLoad = useRef(true)
 
 	useEffect(() => {
 		handleParse(date, time, formattingText)
@@ -17,15 +18,32 @@ function App() {
 		inputTime: string,
 		format: string
 	) => {
-		if (!inputTime) return
+		if (isFirstLoad.current) {
+			isFirstLoad.current = false
+			return
+		}
+		if (!inputTime) {
+			setCopyText('Invalid Time')
+			return
+		}
+		if (!inputDate) {
+			setCopyText('Invalid Date')
+			return
+		}
 		const [hour, minute] = inputTime.split(':')
 		const now = dayjs(inputDate).hour(parseInt(hour)).minute(parseInt(minute))
 		setCopyText(`<t:${now.unix()}:${format}>`)
 	}
 
-	const handleCopy = (text: string) => {
-		navigator.clipboard.writeText(text)
-		alert(`Copied ${text} to the Clipboard`)
+	const handleCopy = async (text: string) => {
+		try {
+			await navigator.clipboard.writeText(text)
+			alert(`Copied ${text} to the Clipboard`)
+		} catch (error) {
+			alert(
+				"Your browser doesn't support directly copying to the clipboard, you will need to manually copy the timestamp!"
+			)
+		}
 	}
 
 	return (
@@ -59,7 +77,9 @@ function App() {
 					<option value='R'>Relative Time</option>
 				</select>
 				{copyText ? <h2>{copyText}</h2> : <h2>Please input a time</h2>}
-				<button onClick={() => handleCopy(copyText)} disabled={!copyText}>
+				<button
+					onClick={() => handleCopy(copyText)}
+					disabled={copyText[0] !== '<'}>
 					Copy Timestamp
 				</button>
 			</div>
